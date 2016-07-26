@@ -1,3 +1,4 @@
+// comment out below line if you don't use HC_SR04 sensor
 #define __HC_SR04__
 
 #define TIME_INTERVAL 1000
