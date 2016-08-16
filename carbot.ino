@@ -28,7 +28,7 @@
 
 unsigned long cur_time, prev_time;
 boolean auto_mode = true;
-char cmd = CONTROL_UP, prev_cmd = -1;
+char cmd = CONTROL_STOP, prev_cmd = -1;
 
 void setup() {
   Serial.begin(115200);
@@ -42,6 +42,7 @@ void setup() {
 #endif
   stop();
   cur_time = prev_time = millis();
+  analogWrite(A0, 0);
 }
 
 void loop() {
@@ -72,8 +73,10 @@ void loop() {
     //Serial.println(cmd);
     switch (cmd) {
       case CONTROL_ON: auto_mode = false; cmd = CONTROL_STOP;
+        analogWrite(A0, 128);
         break;
       case CONTROL_OFF: auto_mode = true; cmd = CONTROL_STOP;
+        analogWrite(A0, 0);
         //Serial.println("control off");
         break;
     }
